@@ -39,19 +39,8 @@ public class ProductServlet extends HttpServlet {
 		ApplicationDao dao = new ApplicationDao();
 		List<Product> products = dao.listProducts();
 		
-	    out.println("<html>");
-	    out.println("<head>");
-	    out.println("<title>Hola</title>");
-	    out.println("</head>");
-	    out.println("<body>");
-	    
-	    for (Product p: products) {
-	    	out.println("<p>" + p.getName() + "</p>");
-	    }
-	    
-	    out.println("</body>");
-	    out.println("</html>");
-
+	    request.setAttribute("products", products);
+	    request.getRequestDispatcher("/html/index.jsp").forward(request, response);
 	}
 
 	/**
