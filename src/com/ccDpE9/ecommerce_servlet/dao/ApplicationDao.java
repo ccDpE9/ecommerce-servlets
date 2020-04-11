@@ -59,4 +59,22 @@ public class ApplicationDao {
 	
 		return rowsAffected;
 	}
+	
+	public User findUser(String email) {
+		User user = null;
+		
+		try {
+			String query = String.format("select name, email, password from users where email=\"%s\"", email);
+			Statement statement = connection.createStatement();
+			ResultSet set = statement.executeQuery(query);
+			
+			if (set.next()) {
+				user = new User(set.getString("name"), set.getString("email"), set.getString("password"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
 }
