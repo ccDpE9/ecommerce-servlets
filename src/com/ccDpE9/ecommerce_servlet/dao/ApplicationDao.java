@@ -18,6 +18,24 @@ public class ApplicationDao {
 		this.connection = DBConnection.get();
 	}
 	
+	public int storeProduct(Product product) {
+		int rowsAffected = 0;
+		
+		try {
+			String query = "INSERT INTO products(name, quantity, imgPath) VALUES ('"+product.getName()+"','"+product.getQuantity()+"','"+product.getImg()+"')";
+			
+			java.sql.PreparedStatement statement = connection.prepareStatement(query);
+			
+			rowsAffected = statement.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		return rowsAffected;
+
+	}
+	
 	public List<Product> listProducts() {
 		Product product = null;
 		List<Product> products = new ArrayList<>();
@@ -29,8 +47,8 @@ public class ApplicationDao {
 		
 			while(set.next()) { 
 				product = new Product();
-				product.setId(set.getInt("id"));
 				product.setName(set.getString("name"));
+				product.setQuantity(set.getInt("quantity"));
 				product.setImg(set.getString("img"));
 				
 				products.add(product);
