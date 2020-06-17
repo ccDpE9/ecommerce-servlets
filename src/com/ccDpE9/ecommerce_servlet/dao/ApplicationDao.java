@@ -65,7 +65,7 @@ public class ApplicationDao {
 		int rowsAffected = 0;
 		
 		try {
-			String query = "INSERT INTO users(name, email, password) VALUES ('"+user.getName()+"','"+user.getEmail()+"','"+user.getPassword()+"')";
+			String query = "INSERT INTO users(name, email, password) VALUES ('"+user.getFirstName()+"','"+user.getLastName()+"','"+user.getEmail()+"','"+user.getPassword()+"')";
 			
 			java.sql.PreparedStatement statement = connection.prepareStatement(query);
 			
@@ -87,7 +87,7 @@ public class ApplicationDao {
 			ResultSet set = statement.executeQuery(query);
 			
 			if (set.next()) {
-				user = new User(set.getString("name"), set.getString("email"), set.getString("password"));
+				user = new User(set.getString("firstName"), set.getString("lastName"), set.getString("email"), set.getString("password"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

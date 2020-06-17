@@ -40,11 +40,12 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		User user = new User(name, email, password);
+		User user = new User(firstName, lastName, email, password);
 		
 		ApplicationDao dao = new ApplicationDao();
 		int rows = dao.registerUser(user);
