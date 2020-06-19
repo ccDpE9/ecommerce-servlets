@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/html/navigation.jsp"/>
 <%
 List<Product> products = (ArrayList)request.getAttribute("products");
 for (Product product: products) {
