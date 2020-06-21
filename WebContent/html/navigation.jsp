@@ -11,13 +11,19 @@
 <nav>
 	<ul>
 		<li>Cart</li>
-		<c:if test="${session.getAttribute("email") != null}">
-			<li>Logout</li>
-		</c:if>
-		<c:if test="${session.getAttribute("email") == null}">
-			<li>Login</li>
-			<li>Register</li>
-		</c:if>
+		<% System.out.println(session.getAttribute("email") != null); %>
+		<%
+			if (session.getAttribute("email") != null) {
+				%>
+				<li><a href="/ecommerce-servlets/logout">Log out</a>
+				<%
+			} else {
+				%>
+				<li><a href="/ecommerce-servlets/login">Login</a>
+				<li><a href="/ecommerce-servlets/register">Register</a>
+				<%
+			}
+		%>
 	</ul>
 </nav>
 </body>
